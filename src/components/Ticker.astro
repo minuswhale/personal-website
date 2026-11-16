@@ -1,0 +1,26 @@
+---
+// Terminal ticker — two marquee rows of code one-liners (decorative).
+const rowA = [
+  '$ python build.py --ship --production',
+  'const site = await astro.build({ care: true })',
+  'git commit -m "write more, refactor less"',
+  '$ npm run dev  # ideas loading…',
+  'while (curious) { build(); learn(); }',
+];
+const rowB = [
+  '$ curl -s life.dev/notes | grep insight',
+  'model.fit(design, engineering, epochs=∞)',
+  'deploy --to edge --regions all',
+  '$ grep -r "TODO" . | wc -l  # honest count',
+  'perf: remove the thing nobody missed',
+];
+---
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-row a">
+    {[...rowA, ...rowA].map((s) => <span>{s}</span>)}
+  </div>
+  <div class="ticker-row b">
+    {[...rowB, ...rowB].map((s) => <span>{s}</span>)}
+  </div>
+</div>

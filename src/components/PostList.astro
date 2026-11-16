@@ -1,0 +1,63 @@
+---
+import T from './T.astro';
+import type { CollectionEntry } from 'astro:content';
+import { trilingualDate } from '../lib/i18n';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  /** Global position of this list's first post (for stable index numbers) */
+  startIndex?: number;
+  /** Total posts in the collection */
+  total: number;
+  /** Show the "Latest" marker on the first item */
+  showLatest?: boolean;
+}
+const { posts, total, startIndex = 0, showLatest = false } = Astro.props;
+---
+
+<div class="post-list">
+  {
+    posts.map((post, i) => {
+      const date = trilingualDate(post.data.pubDate);
+      const idx = String(total - startIndex - i).padStart(3, '0');
+      return (
+        <a class="post-item" href={`/blog/${post.id}/`}>
+          <p class="post-meta">
+            <span class="idx">{idx}</span>
+            <span>·</span>
+            <T en={date.en} cn={date.cn} tw={date.tw} />
+            <span>·</span>
+            <span>
+              {post.data.minutes}{' '}
+              <T en="min read" cn="分钟阅读" tw="分鐘閱讀" />
+            </span>
+            {showLatest && i === 0 && (
+              <span class="latest">
+                <T en="• Latest" cn="• 最新" tw="• 最新" />
+              </span>
+            )}
+          </p>
+          <h3>
+            <T
+              en={post.data.title}
+              cn={post.data.titleCN ?? post.data.title}
+              tw={post.data.titleTW ?? post.data.title}
+            />
+          </h3>
+          <p class="excerpt">
+            <T
+              en={post.data.description}
+              cn={post.data.descriptionCN ?? post.data.description}
+              tw={post.data.descriptionTW ?? post.data.description}
+            />
+          </p>
+          <div class="tags">
+            {post.data.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </a>
+      );
+    })
+  }
+</div>

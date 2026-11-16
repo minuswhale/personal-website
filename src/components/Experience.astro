@@ -1,0 +1,38 @@
+---
+import T from './T.astro';
+import Section from './Section.astro';
+import { experiences } from '../data/site';
+---
+
+<Section
+  id="experience"
+  num="02"
+  en="Experience"
+  cn="经历"
+  tw="經歷"
+  count={`${experiences.length}`}
+>
+  <div class="rows">
+    {
+      experiences.map((job) => (
+        <article class="row">
+          <div class="meta">{job.years}</div>
+          <div class="body">
+            <h3>
+              <T en={job.role.en} cn={job.role.cn} tw={job.role.tw} />
+              <span class="co"> · {job.company}</span>
+            </h3>
+            <p>
+              <T en={job.summary.en} cn={job.summary.cn} tw={job.summary.tw} />
+            </p>
+            <div class="tags">
+              {job.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>

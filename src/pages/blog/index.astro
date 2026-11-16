@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import T from '../../components/T.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data/site';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Base
+  titleMap={{
+    en: `Posts — ${site.name.en}`,
+    'zh-CN': `文章 — ${site.name.cn}`,
+    'zh-TW': `文章 — ${site.name.tw}`,
+  }}
+>
+  <div class="container">
+    <div class="post-header" style="padding-bottom: 1.5rem">
+      <p class="kicker mono accent">
+        <T en="Everything, newest first" cn="全部文章，最新在前" tw="全部文章，最新在前" />
+      </p>
+      <h1><T en="Posts" cn="文章" tw="文章" /></h1>
+      <p class="post-meta" style="margin-top: .8rem; color: var(--text-faint)">
+        {posts.length}
+        <T en=" entries, and counting." cn=" 篇，还在增加。" tw=" 篇，持續增加。" />
+      </p>
+    </div>
+  </div>
+
+  <!-- Body: English placeholder only for now; other languages left blank -->
+  <div class="container blog-placeholder" style="padding-bottom: clamp(3rem, 8vh, 5rem)">
+    <div class="prose" style="padding-block: 0">
+      <T
+        block
+        en="This is where the writing will live — notes on AI, security, compliance, and risk, plus the occasional field report from somewhere far from a keyboard. Posts are being drafted; the shelf below will fill up soon."
+      />
+    </div>
+    <div style="margin-top: 2.5rem">
+      <a href="/" class="back-link">
+        <span aria-hidden="true">←</span>
+        <T en="Home" cn="首页" tw="主頁" />
+      </a>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,110 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/fraunces/wght-italic.css';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  /** Per-locale document titles, injected for the language switcher */
+  titleMap: { en: string; 'zh-CN': string; 'zh-TW': string };
+}
+
+const { titleMap } = Astro.props;
+const themeColors = { dark: '#191512', light: '#f6f1e7' };
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content={`${site.name.en}（${site.name.cn}）— ${site.title.en}. Personal website and blog.`}
+    />
+    <meta name="theme-color" content={themeColors.dark} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{titleMap.en}</title>
+    <!-- Restore theme + language before first paint to avoid flashes -->
+    <script is:inline>
+      (function () {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (!theme) {
+            theme = window.matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+          }
+          document.documentElement.dataset.theme = theme;
+          var lang = localStorage.getItem('lang');
+          if (lang === 'en' || lang === 'zh-CN' || lang === 'zh-TW') {
+            document.documentElement.lang = lang;
+          }
+        } catch (e) {
+          /* stay on defaults */
+        }
+      })();
+    </script>
+    <script type="application/json" id="title-map" set:html={JSON.stringify(titleMap)} />
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      const root = document.documentElement;
+
+      // Language switching — content variants are already in the DOM,
+      // CSS reveals the one matching <html lang>; we just flip the attr.
+      document.querySelectorAll('[data-set-lang]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = (btn as HTMLElement).dataset.setLang!;
+          root.lang = lang;
+          try {
+            localStorage.setItem('lang', lang);
+          } catch {
+            /* private mode */
+          }
+          const map = document.getElementById('title-map')?.textContent;
+          if (map) {
+            const titles = JSON.parse(map);
+            if (titles[lang]) document.title = titles[lang];
+          }
+        });
+      });
+
+      // Theme switching
+      const themeBtn = document.querySelector('.theme-btn');
+      themeBtn?.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem('theme', next);
+        } catch {
+          /* private mode */
+        }
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', next === 'dark' ? '#191512' : '#f6f1e7');
+      });
+
+      // Keep title in sync if the page loads straight into a saved language
+      const savedLang = root.lang;
+      if (savedLang !== 'en') {
+        const map = document.getElementById('title-map')?.textContent;
+        if (map) {
+          const titles = JSON.parse(map);
+          if (titles[savedLang]) document.title = titles[savedLang];
+        }
+      }
+    </script>
+  </body>
+</html>

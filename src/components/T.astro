@@ -1,0 +1,14 @@
+---
+// Trilingual string: renders all three variants; CSS shows the one matching
+// <html lang>. See global.css [data-l] rules.
+interface Props {
+  en: string;
+  cn?: string;
+  tw?: string;
+  class?: string;
+  /** Render as a block-level element instead of inline */
+  block?: boolean;
+}
+const { en, cn, tw, class: className, block = false } = Astro.props;
+---
+<span class={`t${block ? ' t-block' : ''}${className ? ` ${className}` : ''}`}><span data-l="en">{en}</span>{cn && <span data-l="zh-CN">{cn}</span>}{tw && <span data-l="zh-TW">{tw}</span>}</span>

@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import T from '../../components/T.astro';
+import { getCollection, render } from 'astro:content';
+import { trilingualDate } from '../../lib/i18n';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const date = trilingualDate(post.data.pubDate);
+---
+
+<Base
+  titleMap={{
+    en: `${post.data.title} — ${site.name.en}`,
+    'zh-CN': `${post.data.titleCN ?? post.data.title} — ${site.name.cn}`,
+    'zh-TW': `${post.data.titleTW ?? post.data.title} — ${site.name.tw}`,
+  }}
+>
+  <article>
+    <header class="post-header">
+      <a href="/blog" class="back-link">
+        <span aria-hidden="true">←</span>
+        <T en="All posts" cn="全部文章" tw="全部文章" />
+      </a>
+      <h1>
+        <T
+          en={post.data.title}
+          cn={post.data.titleCN ?? post.data.title}
+          tw={post.data.titleTW ?? post.data.title}
+        />
+      </h1>
+      <p class="post-meta">
+        <T en={date.en} cn={date.cn} tw={date.tw} />
+        <span>·</span>
+        <span>
+          {post.data.minutes}
+          {' '}
+          <T en="min read" cn="分钟阅读" tw="分鐘閱讀" />
+        </span>
+        <span>·</span>
+        <a href="/">williamsu.dev</a>
+      </p>
+      <div class="tags">
+        {post.data.tags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    </header>
+
+    <div class="prose">
+      <!-- Body is authored in English for now; translate per post later -->
+      <Content />
+    </div>
+  </article>
+</Base>

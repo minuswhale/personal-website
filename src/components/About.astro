@@ -1,0 +1,45 @@
+---
+import T from './T.astro';
+import Section from './Section.astro';
+---
+
+<Section id="about" num="01" en="About" cn="关于" tw="關於">
+  <div class="about-grid">
+    <div class="about-copy">
+      <h3>
+        <T
+          en="Curious engineer, "
+          cn="好奇的工程师，"
+          tw="好奇的工程師，"
+        /><em><T en="careful craft." cn="克制的工艺。" tw="克制的工藝。" /></em>
+      </h3>
+      <p>
+        <T
+          en="For the last seven years I've built web platforms used by millions — dashboards that stay fast at 100k data points, design systems adopted across whole companies, and the unglamorous refactors that make the next feature cheap."
+          cn="过去七年，我在做千万级用户使用的 Web 平台——在十万数据点下依然流畅的仪表盘、被整个公司采用的设计系统，以及那些让下一个功能更便宜的、不起眼的重构。"
+          tw="過去七年，我在做千萬級用戶使用的 Web 平台——在十萬數據點下依然流暢的儀表板、被整個公司採用的設計系統，以及那些讓下一個功能更便宜的、不起眼的重構。"
+        />
+      </p>
+      <p>
+        <T
+          en="Off the clock: climbing walls of varying difficulty, collecting mono fonts, and writing notes that occasionally become posts."
+          cn="下班之后：攀岩（难度不定）、收集等宽字体、写笔记——偶尔有一两篇会变成文章。"
+          tw="下班之後：攀岩（難度不定）、收集等寬字體、寫筆記——偶爾有一兩篇會變成文章。"
+        />
+      </p>
+
+      <div class="facts">
+        <dl>
+          <dt><T en="Based in" cn="常驻" tw="常駐" /></dt>
+          <dd><T en="Shanghai, CN" cn="上海" tw="上海" /></dd>
+          <dt><T en="Focus" cn="专注" tw="專注" /></dt>
+          <dd><T en="Web platforms · Performance · Design systems" cn="Web 平台 · 性能 · 设计系统" tw="Web 平台 · 性能 · 設計系統" /></dd>
+          <dt><T en="Currently" cn="目前" tw="目前" /></dt>
+          <dd><T en="Senior SWE @ Northwind Labs" cn="Northwind Labs 高级工程师" tw="Northwind Labs 資深工程師" /></dd>
+          <dt><T en="Open to" cn="开放于" tw="開放於" /></dt>
+          <dd><T en="Interesting problems & pen pals" cn="有趣的问题 & 笔友" tw="有趣的問題 & 筆友" /></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</Section>

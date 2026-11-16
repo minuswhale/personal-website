@@ -1,0 +1,56 @@
+---
+import T from './T.astro';
+import { site } from '../data/site';
+---
+
+<section class="hero container" id="top">
+  <p class="kicker mono">
+    <T
+      en="Technical Product Manager · Financial Investor · Real Estate Broker and Investor · Traveler"
+      cn="科技产品经理 · 金融投资者 · 地产代理兼投资者 · 旅行者"
+      tw="科技產品經理 · 金融投資者 · 地產代理兼投資者 · 旅行者"
+    />
+  </p>
+
+  <h1>
+    <T en="Building " cn="为人构建" tw="為人打造" /><em
+      ><T
+        en="intelligent products"
+        cn="智能产品"
+        tw="智能產品"
+      /></em
+    ><T en=" for people." cn="。" tw="。" />
+  </h1>
+
+  <p class="lede">
+    <T
+      en="I'm William — a product manager (PM) in tech, with focuses in "
+      cn="我是苏睿闻——科技行业的产品经理（PM），专注于"
+      tw="我是蘇睿聞——科技行業的產品經理（PM），專注於"
+    /><strong><T en="artificial intelligence (AI)" cn="人工智能（AI）" tw="人工智能（AI）" /></strong><T en=", " cn="、" tw="、" /><strong><T en="security" cn="安全" tw="安全" /></strong><T en=", " cn="、" tw="、" /><strong><T en="compliance" cn="合规" tw="合規" /></strong><T en=", and " cn="以及" tw="以及" /><strong><T en="risk mitigations and controls" cn="风险缓释与管控" tw="風險緩釋與管控" /></strong><T en=". " cn="。" tw="。" /><T
+      en="I am also an investor, licensed real estate broker, an avid traveler, with additional passions in globalization strategies and gaming."
+      cn="我同时也是投资人、持牌地产代理，热衷于旅行，并对全球化战略与游戏抱有浓厚兴趣。"
+      tw="我同時也是投資者與持牌地產代理，熱愛旅行，並對全球化策略與遊戲抱有濃厚興趣。"
+    />
+  </p>
+
+  <div class="hero-ctas">
+    <a class="pill primary" href="#projects">
+      <T en="View my work" cn="看看项目" tw="看看項目" />
+      <span aria-hidden="true">↓</span>
+    </a>
+    <a class="pill" href="/blog/">
+      <T en="Read the blog" cn="读读博客" tw="讀讀網誌" />
+    </a>
+    <a class="pill" href={`mailto:${site.email}`}>
+      <T en="Email me" cn="给我写信" tw="寫信給我" />
+    </a>
+  </div>
+
+  <p class="hero-scroll-hint mono">
+    <T en="Scroll" cn="往下滚" tw="往下捲" />
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <path d="M12 5v14m-7-7 7 7 7-7"></path>
+    </svg>
+  </p>
+</section>

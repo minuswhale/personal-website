@@ -1,0 +1,46 @@
+---
+import T from './T.astro';
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <p class="cta">
+      <T
+        en="Let's build something "
+        cn="一起做点"
+        tw="一起做一些"
+      /><em><T en="worth keeping." cn="值得留下的东西。" tw="值得留下的東西。" /></em>
+    </p>
+
+    <div class="footer-ctas">
+      <a class="pill primary" href={`mailto:${site.email}`}>
+        <T en="Get in touch" cn="联系我" tw="聯絡我" />
+      </a>
+      {
+        site.socials.map((s) => (
+          <a class="pill" href={s.href} target="_blank" rel="noopener noreferrer">
+            {s.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="footer-bottom">
+      <span>
+        © {year} <T en={site.name.en} cn={site.name.cn} tw={site.name.tw} /> ·
+        <T
+          en=" designed & built with care"
+          cn=" 用心设计，亲手搭建"
+          tw=" 用心設計，親手搭建"
+        />
+      </span>
+      <div class="links">
+        <a href="#top">
+          <T en="Back to top ↑" cn="回到顶部 ↑" tw="返回頂部 ↑" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

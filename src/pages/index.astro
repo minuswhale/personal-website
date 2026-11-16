@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Ticker from '../components/Ticker.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  titleMap={{
+    en: `${site.name.en} — ${site.title.en}`,
+    'zh-CN': `${site.name.cn} — ${site.title.cn}`,
+    'zh-TW': `${site.name.tw} — ${site.title.tw}`,
+  }}
+>
+  <Hero />
+  <Ticker />
+  <About />
+  <Experience />
+  <Projects />
+</Base>

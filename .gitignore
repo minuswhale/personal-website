@@ -1,0 +1,24 @@
+# build output
+dist/
+
+# generated types / astro cache
+.astro/
+
+# dependencies (includes .vite and .astro caches inside)
+node_modules/
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# environment variables
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
