@@ -20,7 +20,12 @@ const year = new Date().getFullYear();
       </a>
       {
         site.socials.map((s) => (
-          <a class="pill" href={s.href} target="_blank" rel="noopener noreferrer">
+          <a
+            class={s.hideOn ? `pill lang-hide-${s.hideOn}` : 'pill'}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {s.label}
           </a>
         ))

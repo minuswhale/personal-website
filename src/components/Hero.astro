@@ -1,6 +1,5 @@
 ---
 import T from './T.astro';
-import { site } from '../data/site';
 ---
 
 <section class="hero container" id="top">
@@ -33,19 +32,6 @@ import { site } from '../data/site';
       tw="我同時也是投資者與持牌地產代理，熱愛旅行，並對全球化策略與遊戲抱有濃厚興趣。"
     />
   </p>
-
-  <div class="hero-ctas">
-    <a class="pill primary" href="#projects">
-      <T en="View my work" cn="看看项目" tw="看看項目" />
-      <span aria-hidden="true">↓</span>
-    </a>
-    <a class="pill" href="/blog/">
-      <T en="Read the blog" cn="读读博客" tw="讀讀網誌" />
-    </a>
-    <a class="pill" href={`mailto:${site.email}`}>
-      <T en="Email me" cn="给我写信" tw="寫信給我" />
-    </a>
-  </div>
 
   <p class="hero-scroll-hint mono">
     <T en="Scroll" cn="往下滚" tw="往下捲" />

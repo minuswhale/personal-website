@@ -13,6 +13,9 @@
 :root[lang='zh-CN'] [data-l='zh-CN'],
 :root[lang='zh-TW'] [data-l='zh-TW'] { display: revert; }
 
+/* Region-blocked links (e.g. LinkedIn on the Simplified Chinese site) */
+:root[lang='zh-CN'] .lang-hide-zh-CN { display: none; }
+
 /* ---------- Design tokens ---------- */
 :root {
   /* light theme: warm paper */
@@ -183,6 +186,18 @@ h1, h2, h3, h4 {
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
+.nav-toggle {
+  display: none;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: color var(--transition), border-color var(--transition);
+}
+.nav-toggle svg { width: 1rem; height: 1rem; }
+.nav-toggle:hover { color: var(--accent); border-color: var(--accent); }
 .nav-links::-webkit-scrollbar { display: none; }
 .nav-links a {
   font-family: var(--font-mono);
@@ -441,6 +456,19 @@ h1, h2, h3, h4 {
 .about-copy p { color: var(--text-muted); max-width: 56ch; }
 .about-copy p + p { margin-top: 1rem; }
 
+/* Inline brand marks (Meta / Microsoft / Penn State) */
+.brandmark {
+  display: inline;
+  white-space: nowrap;
+}
+.brandmark img {
+  display: inline-block;
+  height: 1.02em;
+  width: auto;
+  vertical-align: -0.14em;
+  margin-right: 0.45em;
+}
+
 .facts {
   margin-top: 2.2rem;
   border-top: 1px solid var(--line-faint);
@@ -468,7 +496,20 @@ h1, h2, h3, h4 {
   font-size: 0.95rem;
 }
 
-/* ---------- Numbered rows (Experience / Projects / Posts) ---------- */
+/* ---------- Subsection labels (Tech / Others) ---------- */
+.subsec {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 620;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  margin: 0 0 1.1rem;
+}
+.subsec + .rows {
+  margin-bottom: 3rem;
+}
+
+/* ---------- Numbered rows (Experience / Hobbies / Posts) ---------- */
 .rows {
   border-top: 1px solid var(--line-faint);
 }
@@ -526,6 +567,11 @@ h1, h2, h3, h4 {
   align-items: flex-end;
   gap: 0.55rem;
   padding-top: 0.35rem;
+}
+.rowlogo img {
+  display: block;
+  height: 1.6rem;
+  width: auto;
 }
 .row .side .arrow {
   font-family: var(--font-mono);
@@ -795,12 +841,51 @@ a.row:hover .side .arrow { color: var(--accent); transform: translate(3px, -3px)
 @media (max-width: 720px) {
   .nav-inner { gap: 0.75rem; }
   .nav-brand { font-size: 1rem; }
-  .nav-links { gap: 1rem; }
+  .nav-toggle { display: grid; }
+
+  /* Nav links become a dropdown panel under the top bar */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    overflow: visible;
+    background: color-mix(in srgb, var(--bg) 96%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line-faint);
+    padding: 0.4rem var(--gutter) 0.9rem;
+  }
+  .nav.nav-open .nav-links { display: flex; }
+  .nav-links a {
+    padding-block: 0.8rem;
+    font-size: 0.82rem;
+    border-bottom: 1px solid var(--line-faint);
+    white-space: normal;
+  }
+  .nav-links a:last-child { border-bottom: none; }
+
   .row { grid-template-columns: 1fr; }
-  .row .side { flex-direction: row; align-items: center; padding-top: 0; }
+  /* Pin row logos (Experience) to the top-right corner instead of stacking below */
+  .row .side {
+    position: absolute;
+    top: 1.45rem;
+    right: 0;
+    padding: 0;
+  }
+  .row .body { padding-right: 2.4rem; }
   .facts dl { grid-template-columns: 1fr; }
   .facts dt { padding-bottom: 0.15rem; border-bottom: none; }
   .facts dd { padding-top: 0.1rem; }
+}
+
+@media (max-width: 560px) {
+  /* Let the italic accent phrase wrap so the headline never overflows */
+  .hero h1 { font-size: clamp(2.15rem, 11vw, 3rem); }
+  .hero h1 em { white-space: normal; }
 }
 
 /* ---------- Motion preferences ---------- */

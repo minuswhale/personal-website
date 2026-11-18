@@ -1,7 +1,7 @@
 ---
 import T from './T.astro';
 import Section from './Section.astro';
-import { experiences } from '../data/site';
+import { experiences, others } from '../data/site';
 ---
 
 <Section
@@ -10,8 +10,9 @@ import { experiences } from '../data/site';
   en="Experience"
   cn="经历"
   tw="經歷"
-  count={`${experiences.length}`}
+  count={`${experiences.length + others.length}`}
 >
+  <h4 class="subsec"><T en="Tech" cn="技术" tw="技術" /></h4>
   <div class="rows">
     {
       experiences.map((job) => (
@@ -20,16 +21,57 @@ import { experiences } from '../data/site';
           <div class="body">
             <h3>
               <T en={job.role.en} cn={job.role.cn} tw={job.role.tw} />
-              <span class="co"> · {job.company}</span>
+              {job.company && <span class="co"> · {job.company}</span>}
             </h3>
-            <p>
-              <T en={job.summary.en} cn={job.summary.cn} tw={job.summary.tw} />
-            </p>
-            <div class="tags">
-              {job.tags.map((tag) => (
-                <span class="tag">{tag}</span>
-              ))}
+            {job.summary && (
+              <p>
+                <T
+                  en={job.summary.en}
+                  cn={job.summary.cn}
+                  tw={job.summary.tw}
+                />
+              </p>
+            )}
+            {job.tags && job.tags.length > 0 && (
+              <div class="tags">
+                {job.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            )}
+          </div>
+          {job.logo && (
+            <div class="side">
+              <span class="rowlogo">
+                <img src={`/brands/${job.logo}.svg`} alt={job.company ?? ''} />
+              </span>
             </div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+
+  <h4 class="subsec"><T en="Others" cn="其他" tw="其他" /></h4>
+  <div class="rows">
+    {
+      others.map((job) => (
+        <article class="row">
+          <div class="meta">{job.years}</div>
+          <div class="body">
+            <h3>
+              <T en={job.role.en} cn={job.role.cn} tw={job.role.tw} />
+              {job.company && <span class="co"> · {job.company}</span>}
+            </h3>
+            {job.summary && (
+              <p>
+                <T
+                  en={job.summary.en}
+                  cn={job.summary.cn}
+                  tw={job.summary.tw}
+                />
+              </p>
+            )}
           </div>
         </article>
       ))
