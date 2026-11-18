@@ -24,12 +24,6 @@ export interface Project {
   link?: string;
 }
 
-export interface Hobby {
-  name: L10n;
-  /** Optional one-line note; plain text, no ovals/links */
-  note?: L10n;
-}
-
 export interface SocialLink {
   label: string;
   href: string;
@@ -112,40 +106,5 @@ export const others: Experience[] = [
   {
     years: '2017 — Now',
     role: { en: 'Accredited Investor', cn: '认证投资者', tw: '認可投資者' },
-  },
-];
-
-export const hobbies: Hobby[] = [
-  {
-    name: { en: 'Traveling', cn: '旅行', tw: '旅行' },
-    note: {
-      en: 'Avid traveler, always planning the next trip',
-      cn: '热爱旅行，永远在计划下一趟旅程',
-      tw: '熱愛旅行，永遠在計劃下一趟旅程',
-    },
-  },
-  {
-    name: { en: 'Pickleball', cn: '匹克球', tw: '匹克球' },
-    note: {
-      en: 'Weekend regular on the court',
-      cn: '球场上的周末常客',
-      tw: '球場上的週末常客',
-    },
-  },
-  {
-    name: { en: 'Photography', cn: '摄影', tw: '攝影' },
-    note: { en: 'Chasing light', cn: '追光的人', tw: '追光的人' },
-  },
-  {
-    name: { en: 'Gaming', cn: '游戏', tw: '遊戲' },
-    note: { en: 'Strategy first', cn: '策略优先', tw: '策略優先' },
-  },
-  {
-    name: { en: 'Camping and backcountry', cn: '露营与荒野徒步', tw: '露營與荒野遠足' },
-    note: {
-      en: 'Off the grid, on purpose',
-      cn: '刻意断网，走进荒野',
-      tw: '刻意斷網，走進荒野',
-    },
   },
 ];

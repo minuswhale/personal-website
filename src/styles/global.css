@@ -496,6 +496,13 @@ h1, h2, h3, h4 {
   font-size: 0.95rem;
 }
 
+/* ---------- Hobbies (paragraph inside About) ---------- */
+.subsec.about-hobbies { margin-top: 3.4rem; }
+.hobbies-copy strong {
+  font-weight: 640;
+  color: var(--accent);
+}
+
 /* ---------- Subsection labels (Tech / Others) ---------- */
 .subsec {
   font-family: var(--font-serif);
