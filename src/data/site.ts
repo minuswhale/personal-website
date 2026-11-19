@@ -95,11 +95,11 @@ export const experiences: Experience[] = [
 export const others: Experience[] = [
   {
     years: '2024 — Now',
-    role: { en: 'Real Estate Investor and Broker, Washington', cn: '华盛顿州房地产投资人与经纪人', tw: '華盛頓州地產投資者與代理' },
+    role: { en: 'Real Estate Investor and Broker, Washington', cn: '华盛顿州房地产投资人与代理', tw: '華盛頓州地產投資者與代理' },
     company: 'Special Real Estate Group',
     summary: {
       en: 'Licensed real estate broker in Washington state, USA, specializing in residential home purchases.',
-      cn: '美国华盛顿州持牌房地产经纪人，专注于住宅购房。',
+      cn: '美国华盛顿州持牌房地产代理，专注于住宅购房。',
       tw: '美國華盛頓州持牌地產代理，專注於住宅物業買賣。',
     },
   },
