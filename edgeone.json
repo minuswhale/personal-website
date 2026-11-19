@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/blog", "destination": "/blog/index.html" },
+    { "source": "/blog/", "destination": "/blog/index.html" },
+    { "source": "/blog/stealing-like-a-designer", "destination": "/blog/stealing-like-a-designer/index.html" },
+    { "source": "/blog/stealing-like-a-designer/", "destination": "/blog/stealing-like-a-designer/index.html" },
+    { "source": "/blog/writing-in-public", "destination": "/blog/writing-in-public/index.html" },
+    { "source": "/blog/writing-in-public/", "destination": "/blog/writing-in-public/index.html" },
+    { "source": "/blog/terminal-five-years", "destination": "/blog/terminal-five-years/index.html" },
+    { "source": "/blog/terminal-five-years/", "destination": "/blog/terminal-five-years/index.html" }
+  ]
+}
