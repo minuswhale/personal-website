@@ -10,9 +10,8 @@ import { experiences, others } from '../data/site';
   en="Experience"
   cn="经历"
   tw="經歷"
-  count={`${experiences.length + others.length}`}
 >
-  <h4 class="subsec"><T en="Tech" cn="技术" tw="技術" /></h4>
+  <h4 class="subsec"><T en="Tech" cn="科技行业" tw="科技行業" /></h4>
   <div class="rows">
     {
       experiences.map((job) => (
@@ -21,7 +20,14 @@ import { experiences, others } from '../data/site';
           <div class="body">
             <h3>
               <T en={job.role.en} cn={job.role.cn} tw={job.role.tw} />
-              {job.company && <span class="co"> · {job.company}</span>}
+              {job.company && (
+                <span class="co">
+                  {' '}
+                  · <T en={job.company} cn={job.company} tw={job.company} />{job.companyNote && (
+                    <T class="co-note" en={job.companyNote.en} cn={job.companyNote.cn} tw={job.companyNote.tw} />
+                  )}
+                </span>
+              )}
             </h3>
             {job.summary && (
               <p>
@@ -61,7 +67,14 @@ import { experiences, others } from '../data/site';
           <div class="body">
             <h3>
               <T en={job.role.en} cn={job.role.cn} tw={job.role.tw} />
-              {job.company && <span class="co"> · {job.company}</span>}
+              {job.company && (
+                <span class="co">
+                  {' '}
+                  · <T en={job.company} cn={job.company} tw={job.company} />{job.companyNote && (
+                    <T class="co-note" en={job.companyNote.en} cn={job.companyNote.cn} tw={job.companyNote.tw} />
+                  )}
+                </span>
+              )}
             </h3>
             {job.summary && (
               <p>

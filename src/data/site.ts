@@ -11,6 +11,8 @@ export interface Experience {
   years: string;
   role: L10n;
   company?: string;
+  /** Upright parenthetical after the company name, e.g. （脸书） */
+  companyNote?: Partial<L10n>;
   summary?: L10n;
   tags?: string[];
   /** Brand mark on the right of the row: file name in public/brands/ */
@@ -56,8 +58,9 @@ export const site = {
 export const experiences: Experience[] = [
   {
     years: '2020 — Now',
-    role: { en: 'Lead Product TPM', cn: '产品 TPM 负责人', tw: '產品 TPM 負責人' },
+    role: { en: 'Lead Product TPM', cn: '资深产品项目领队', tw: '資深產品項目領隊' },
     company: 'Meta',
+    companyNote: { cn: '（脸书）', tw: '（臉書）' },
     summary: {
       en: 'Leading Meta’s ads responsibility ads experiences that ensures regulatory compliance posture by building cutting-edge compliance product solutions that impact billions of users every day. Currently focused on GenAI transparency and compliance.',
       cn: '负责 Meta 广告责任与广告体验领域的产品，通过构建尖端的合规产品解决方案确保监管合规态势，每日影响数十亿用户。目前专注于生成式 AI（GenAI）透明度与合规。',
@@ -70,6 +73,7 @@ export const experiences: Experience[] = [
     years: '2014 — 2020',
     role: { en: 'Senior Product Manager', cn: '高级产品经理', tw: '資深產品經理' },
     company: 'Microsoft',
+    companyNote: { cn: '（微软）', tw: '（微軟）' },
     summary: {
       en: 'Founding member of Microsoft Defender for O365. Leveraged ML systems and detonation chambers and built SafeAttachments and SafeLinks from ground up into a business that generated $1B+ annualized revenue for top enterprises across the world.',
       cn: 'Microsoft Defender for O365 创始团队成员。借助机器学习系统与沙箱引爆（detonation chamber）技术，从零构建 SafeAttachments 与 SafeLinks，发展为面向全球头部企业、年化收入超 10 亿美元的业务。',
@@ -82,6 +86,7 @@ export const experiences: Experience[] = [
     years: '2013',
     role: { en: 'Application Developer Intern', cn: '应用程序开发实习生', tw: '應用程式開發實習生' },
     company: 'Hewlett-Packard',
+    companyNote: { cn: '（惠普）', tw: '（惠普）' },
     summary: {
       en: 'Internship. Built lightweight web apps for SharePoint Online on top of HP’s enterprise platform.',
       cn: '实习期间，在 HP 企业平台之上为 SharePoint Online 构建轻量级 Web 应用。',

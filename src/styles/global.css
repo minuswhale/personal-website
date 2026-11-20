@@ -503,6 +503,64 @@ h1, h2, h3, h4 {
   color: var(--accent);
 }
 
+/* ---------- Seal-script nav brand (Chinese) ----------
+   全字庫說文解字字體 (CNS11643, 國發會) — Taiwan Open Government Data
+   License 1.0. Subsetted to the name glyphs via scripts/make-seal-font.mjs
+   (source: cns11643.gov.tw ebas927.ttf). */
+@font-face {
+  font-family: 'CNS Seal';
+  src: url('/fonts/seal-name.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* TRIAL (local-only, gitignored): 崇羲篆體 1.00, CC-BY-ND 3.0 — no subsetting
+   permitted, so the full 21.8MB OTF is loaded only for evaluation. */
+@font-face {
+  font-family: 'Chong Xi Small Seal';
+  src: url('/fonts/chongxi-seal.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root[lang='zh-CN'] .nav-brand {
+  font-family: 'Chong Xi Small Seal', 'CNS Seal', 'Noto Sans SC Variable', serif;
+  font-weight: 400;
+  font-size: 1.18rem;
+  letter-spacing: 0.02em;
+}
+:root[lang='zh-TW'] .nav-brand {
+  font-family: 'Chong Xi Small Seal', 'CNS Seal', 'Noto Sans TC Variable', serif;
+  font-weight: 400;
+  font-size: 1.18rem;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- CJK display type ----------
+   The big statements (hero headline, About heading) switch to a modern
+   sans in Chinese — serif + synthetic italic looks poor for CJK. The
+   accent phrase stays upright (no synthetic oblique); color carries it. */
+:root[lang='zh-CN'] .hero h1,
+:root[lang='zh-CN'] .about-copy h3,
+:root[lang='zh-CN'] .footer .cta {
+  font-family: 'Noto Sans SC Variable', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+:root[lang='zh-TW'] .hero h1,
+:root[lang='zh-TW'] .about-copy h3,
+:root[lang='zh-TW'] .footer .cta {
+  font-family: 'Noto Sans TC Variable', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+}
+:root[lang='zh-CN'] .hero h1 em,
+:root[lang='zh-CN'] .about-copy h3 em,
+:root[lang='zh-CN'] .footer .cta em,
+:root[lang='zh-TW'] .hero h1 em,
+:root[lang='zh-TW'] .about-copy h3 em,
+:root[lang='zh-TW'] .footer .cta em {
+  font-style: normal;
+  font-variation-settings: normal;
+  letter-spacing: 0.02em;
+}
+
 /* ---------- Subsection labels (Tech / Others) ---------- */
 .subsec {
   font-family: var(--font-serif);
@@ -561,6 +619,10 @@ h1, h2, h3, h4 {
   color: var(--text-muted);
   font-style: italic;
   font-variation-settings: 'opsz' 40;
+}
+.row h3 .co .co-note {
+  font-style: normal;
+  font-variation-settings: normal;
 }
 .row p {
   margin: 0.45rem 0 0;

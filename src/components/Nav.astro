@@ -7,7 +7,10 @@ import { site } from '../data/site';
   <div class="container nav-inner">
     <a href="#top" class="nav-brand">
       <span class="dot" aria-hidden="true"></span>
-      <T en={site.name.en} cn={site.name.cn} tw={site.name.tw} />
+      <!-- Seal-script brand uses traditional glyph forms on both Chinese
+           sites (蘇睿聞) — seal script conventionally uses ancient forms;
+           the site body remains simplified on zh-CN. -->
+      <T en={site.name.en} cn={site.name.tw} tw={site.name.tw} />
     </a>
 
     <div class="nav-links" id="nav-menu">
