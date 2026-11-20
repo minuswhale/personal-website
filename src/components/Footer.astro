@@ -15,9 +15,6 @@ const year = new Date().getFullYear();
     </p>
 
     <div class="footer-ctas">
-      <a class="pill primary" href={`mailto:${site.email}`}>
-        <T en="Get in touch" cn="联系我" tw="聯絡我" />
-      </a>
       {
         site.socials.map((s) => (
           <a
@@ -42,7 +39,7 @@ const year = new Date().getFullYear();
         />
       </span>
       <div class="links">
-        <a href="#top">
+        <a href="/#top">
           <T en="Back to top ↑" cn="回到顶部 ↑" tw="返回頂部 ↑" />
         </a>
       </div>

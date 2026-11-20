@@ -5,17 +5,16 @@ import { site } from '../data/site';
 
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="#top" class="nav-brand">
+    <a href="/" class="nav-brand">
       <span class="dot" aria-hidden="true"></span>
-      <!-- Seal-script brand uses traditional glyph forms on both Chinese
-           sites (蘇睿聞) — seal script conventionally uses ancient forms;
-           the site body remains simplified on zh-CN. -->
-      <T en={site.name.en} cn={site.name.tw} tw={site.name.tw} />
+      <!-- Chinese brand renders in LXGW WenKai (楷书): simplified on
+           zh-CN, traditional on zh-TW -->
+      <T en={site.name.en} cn={site.name.cn} tw={site.name.tw} />
     </a>
 
     <div class="nav-links" id="nav-menu">
-      <a href="#about"><T en="About" cn="关于" tw="關於" /></a>
-      <a href="#experience"><T en="Experience" cn="经历" tw="經歷" /></a>
+      <a href="/#about"><T en="About" cn="关于" tw="關於" /></a>
+      <a href="/#experience"><T en="Experience" cn="经历" tw="經歷" /></a>
       <a href="/blog/"><T en="Blog" cn="博客" tw="網誌" /></a>
     </div>
 
@@ -61,14 +60,15 @@ import { site } from '../data/site';
     const open = nav?.classList.toggle('nav-open') ?? false;
     toggle.setAttribute('aria-expanded', String(open));
   });
-  // Close the menu after choosing a destination, and scroll explicitly.
-  // Some embedded webviews suppress smooth/anchor scrolling — if the page
-  // hasn't moved shortly after the click, fall back to an instant scroll.
+  // Close the menu after choosing a destination, and scroll explicitly
+  // when the target lives on the current page. Cross-page links (e.g.
+  // /#about from the blog) navigate normally.
   document.querySelectorAll('.nav-links a').forEach((a) => {
     a.addEventListener('click', () => {
       nav?.classList.remove('nav-open');
       toggle?.setAttribute('aria-expanded', 'false');
-      const id = a.getAttribute('href')?.slice(1);
+      const href = a.getAttribute('href') ?? '';
+      const id = href.includes('#') ? href.split('#')[1] : null;
       const target = id ? document.getElementById(id) : null;
       if (!target) return;
       const startY = window.scrollY;
